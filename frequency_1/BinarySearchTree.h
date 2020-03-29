@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <algorithm>
+#include <queue>
 #include <memory>
 
 using namespace std;
@@ -35,7 +36,7 @@ public:
 
 	int maxValue();
 
-
+	bool contains(int key);
 
 
 };

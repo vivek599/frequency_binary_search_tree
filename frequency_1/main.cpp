@@ -40,11 +40,17 @@ int main()
 	cout << "min : " << root->minValue() << endl;
 	cout << "max : " << root->maxValue() << endl;
 
+	cout << "816 is present : " << (root->contains(816) ? "Yes" : "No") << endl;
+	cout << "1001 is present : " << (root->contains(1001) ? "Yes" : "No") << endl;
+
+
 	while ( true )
 	{
 		cout << "Enter a number between 0 to 1000 : ";
 		cin >> num;
-		
+
+		cout << num << " is " << (root->contains(num) ? "present." : "Not present.") << endl;
+
 		if (num == -1)
 		{
 			break;;

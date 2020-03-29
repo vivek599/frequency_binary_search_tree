@@ -23,9 +23,6 @@ void BTree::inorder()
 
 bool BTree::insert(int key)
 {
-	// If key already exists in BST,  
-	// increment count and return 
-
 	if (this->key == -1)
 	{
 		this->key = key;
@@ -39,7 +36,6 @@ bool BTree::insert(int key)
 		return true;
 	}
 
-	/* Otherwise, recur down the tree */
 	if (key < this->key)
 	{
 		if (this->left == NULL)
@@ -100,4 +96,38 @@ int BTree::maxValue()
 		current = current->right.get();
 
 	return current->key;
+}
+
+bool BTree::contains(int key)
+{
+	// Base Case  
+	if (this == NULL)
+		return false;
+
+	queue<BTree*> que;
+
+	que.push(this);
+
+	while ( !que.empty() )
+	{
+		BTree* current = que.front();
+		if (current->key == key)
+			return true;
+
+		que.pop();
+
+		if (current->left != NULL)
+		{
+			que.push(current->left.get());
+		}
+
+		if (current->right != NULL)
+		{
+			que.push(current->right.get());
+		}
+
+	}
+
+	return false;
+
 }
