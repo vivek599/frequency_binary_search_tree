@@ -89,8 +89,6 @@ int main()
 
 		cout << num << " is " << (root->Contains(num) ? "present." : "Not present.") << endl;
 
-
-
 		num = num < 0 ? 0 : num > 1000 ? 1000 : num;
 
 		cout << "freq of " << num << " is " << root->GetFrequency(num) << endl;
