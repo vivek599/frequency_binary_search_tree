@@ -12,14 +12,76 @@ BTree::~BTree()
 
 }
 
-void BTree::inorder()
+void BTree::PreOrder()
 {
 	if (this != NULL)
 	{
-		this->left->inorder();
 		cout << "Key : " << this->key << "\t|\tFreq : " << this->count << endl;
-		this->right->inorder();
+		this->left->InOrder();
+		this->right->InOrder();
 	}
+}
+ 
+void BTree::InOrder()
+{
+	if (this != NULL)
+	{
+		this->left->InOrder();
+		cout << "Key : " << this->key << "\t|\tFreq : " << this->count << endl;
+		this->right->InOrder();
+	}
+}
+
+void BTree::PostOrder()
+{
+	if (this != NULL)
+	{
+		this->left->InOrder();
+		this->right->InOrder();
+		cout << "Key : " << this->key << "\t|\tFreq : " << this->count << endl;
+	}
+}
+
+void BTree::LevelOrder()
+{
+	if (this == NULL)
+	{
+		return;
+	}
+
+	queue<BTree*> que;
+	que.push(this);
+	que.push(nullptr);
+
+	while (!que.empty()) 
+	{
+		BTree* current = que.front();
+
+		que.pop();
+
+		if (current != NULL)
+		{
+			cout << current->key << " ";
+			if (current->left != NULL)
+			{
+				que.push(current->left.get());
+			}
+
+			if (current->right != NULL )
+			{
+				que.push(current->right.get());
+			}
+		}
+		else 
+		{
+			if (!que.empty()) 
+			{
+				cout << endl;
+				que.push(nullptr);
+			}
+		}
+	}  
+
 }
 
 bool BTree::Insert(int key)

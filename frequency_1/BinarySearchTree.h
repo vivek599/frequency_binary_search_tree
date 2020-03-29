@@ -32,7 +32,11 @@ public:
 	~BTree();
 
 
-	void inorder();
+	void PreOrder();
+	void InOrder();
+	void PostOrder();
+
+	void LevelOrder();
 
 	bool Insert(int key);
 

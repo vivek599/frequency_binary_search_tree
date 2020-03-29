@@ -32,10 +32,15 @@ int main()
 	root->Insert(70);
 	root->Insert(200);
 	
-	root->inorder();
+	cout << endl;
+	root->LevelOrder();
+	cout << endl;
 
 	cout << "RemoveLeafs ..." << endl;
 	root->RemoveLeafs();
+	cout << endl;
+	root->LevelOrder();
+	cout << endl;
 
 #else
 
@@ -71,12 +76,14 @@ int main()
 		cout << "Enter a number between 0 to 1000 : ";
 		cin >> num;
 
-		cout << num << " is " << (root->Contains(num) ? "present." : "Not present.") << endl;
-
 		if (num == -1)
 		{
 			break;;
 		}
+
+		cout << num << " is " << (root->Contains(num) ? "present." : "Not present.") << endl;
+
+
 
 		num = num < 0 ? 0 : num > 1000 ? 1000 : num;
 
@@ -88,7 +95,9 @@ int main()
 
 #endif
 
-	root->inorder();
+	root->LevelOrder();
+	cout << endl;
+	//root->InOrder();
 
 	system("pause");
 
