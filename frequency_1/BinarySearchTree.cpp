@@ -81,3 +81,23 @@ int BTree::freq(int key)
 		return this->right->freq(key);
 	}
 }
+
+int BTree::minValue()
+{
+	BTree* current = this;
+
+	while (current && current->left != NULL)
+		current = current->left.get();
+
+	return current->key;
+}
+
+int BTree::maxValue()
+{
+	BTree* current = this;
+
+	while (current && current->right != NULL)
+		current = current->right.get();
+
+	return current->key;
+}

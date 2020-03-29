@@ -31,6 +31,11 @@ public:
 
 	int freq(int key);
 
+	int minValue();
+
+	int maxValue();
+
+
 
 
 };

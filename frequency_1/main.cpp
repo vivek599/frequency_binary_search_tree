@@ -37,6 +37,9 @@ int main()
 
 	infile.close();
 
+	cout << "min : " << root->minValue() << endl;
+	cout << "max : " << root->maxValue() << endl;
+
 	while ( true )
 	{
 		cout << "Enter a number between 0 to 1000 : ";
@@ -55,7 +58,7 @@ int main()
 		system("cls");
 	}
 
- 
+
 	root->inorder();
 
 	system("pause");
