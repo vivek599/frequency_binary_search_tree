@@ -141,6 +141,17 @@ int BTree::GetFrequency(int key)
 	}
 }
 
+int BTree::GetHeight()
+{
+	if (this == NULL)
+		return 0;
+
+	int leftHeight = this->left->GetHeight();
+	int rightHeight = this->right->GetHeight();
+
+	return max( leftHeight, rightHeight ) + 1;
+}
+
 int BTree::GetMinValue()
 {
 	BTree* current = this;
@@ -163,7 +174,6 @@ int BTree::GetMaxValue()
 
 bool BTree::Contains(int key)
 {
-	// Base Case  
 	if (this == NULL)
 		return false;
 

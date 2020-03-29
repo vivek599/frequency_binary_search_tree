@@ -42,6 +42,8 @@ public:
 
 	int GetFrequency(int key);
 
+	int GetHeight();
+
 	int GetMinValue();
 
 	int GetMaxValue();
