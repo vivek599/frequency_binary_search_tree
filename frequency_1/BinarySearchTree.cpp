@@ -138,6 +138,30 @@ void BTree::Remove(int key)
 	DeleteNode(key);
 }
 
+void BTree::RemoveLeafs()
+{
+	DeleteLeaf();
+}
+
+std::shared_ptr<BTree> BTree::DeleteLeaf()
+{
+	if (this == NULL)
+		return NULL;
+
+	if (this->left == NULL && this->right == NULL) 
+	{
+		SharedThis().reset();
+		return NULL;
+	}
+
+	// Else recursively delete in left and right 
+	// subtrees. 
+	this->left = this->left->DeleteLeaf();
+	this->right = this->right->DeleteLeaf();
+
+	return SharedThis();
+}
+
 shared_ptr<BTree> BTree::DeleteNode(int key)
 {
 	if ( this == NULL)

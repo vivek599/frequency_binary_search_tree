@@ -22,6 +22,23 @@ int main()
 
 	shared_ptr<BTree> root(new BTree());
 
+#if 0
+
+	root->Insert(100);
+	root->Insert(900);
+	root->Insert(20);
+	root->Insert(80);
+	root->Insert(90);
+	root->Insert(70);
+	root->Insert(200);
+	
+	root->inorder();
+
+	cout << "RemoveLeafs ..." << endl;
+	root->RemoveLeafs();
+
+#else
+
 	cout << "Reading file..." << endl;
 	while (!infile.eof())
 	{
@@ -68,6 +85,8 @@ int main()
 		system("pause");
 		system("cls");
 	}
+
+#endif
 
 	root->inorder();
 
