@@ -9,7 +9,6 @@ using namespace std;
 int main()
 {
 
-
 	int num = 0;
 
 	ifstream infile("../data/SensorIntensityData.txt" );
