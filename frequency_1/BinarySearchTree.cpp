@@ -22,7 +22,7 @@ void BTree::inorder()
 	}
 }
 
-bool BTree::insert(int key)
+bool BTree::Insert(int key)
 {
 	if (this->key == -1)
 	{
@@ -44,7 +44,7 @@ bool BTree::insert(int key)
 			this->left.reset(new BTree());
 		}
 
-		return this->left->insert(key);
+		return this->left->Insert(key);
 	}
 	else
 	{
@@ -53,15 +53,15 @@ bool BTree::insert(int key)
 			this->right.reset(new BTree());
 		}
 
-		return this->right->insert(key);
+		return this->right->Insert(key);
 	}
 }
 
-int BTree::freq(int key)
+int BTree::GetFrequency(int key)
 {
 	if (this == NULL)
 	{
-		return -1;
+		return 0;
 	}
 
 	if (this->key == key)
@@ -71,15 +71,15 @@ int BTree::freq(int key)
 
 	if (key < this->key)
 	{
-		return this->left->freq(key);
+		return this->left->GetFrequency(key);
 	}
 	else
 	{
-		return this->right->freq(key);
+		return this->right->GetFrequency(key);
 	}
 }
 
-int BTree::minValue()
+int BTree::GetMinValue()
 {
 	BTree* current = this;
 
@@ -89,7 +89,7 @@ int BTree::minValue()
 	return current->key;
 }
 
-int BTree::maxValue()
+int BTree::GetMaxValue()
 {
 	BTree* current = this;
 
@@ -99,7 +99,7 @@ int BTree::maxValue()
 	return current->key;
 }
 
-bool BTree::contains(int key)
+bool BTree::Contains(int key)
 {
 	// Base Case  
 	if (this == NULL)
@@ -135,21 +135,21 @@ bool BTree::contains(int key)
 
 void BTree::Remove(int key)
 {
-	deleteNode(key);
+	DeleteNode(key);
 }
 
-shared_ptr<BTree> BTree::deleteNode(int key)
+shared_ptr<BTree> BTree::DeleteNode(int key)
 {
 	if ( this == NULL)
 		return NULL;
 
 	if (key < this->key)
 	{
-		this->left = this->left->deleteNode(key);
+		this->left = this->left->DeleteNode(key);
 	}
 	else if (key > this->key)
 	{
-		this->right = this->right->deleteNode(key);
+		this->right = this->right->DeleteNode(key);
 	}
 	else
 	{
@@ -157,31 +157,31 @@ shared_ptr<BTree> BTree::deleteNode(int key)
 		if (this->left == NULL)
 		{
 			shared_ptr<BTree> temp = this->right;
-			GetSharedThis().reset();
+			SharedThis().reset();
 			return temp;
 		}
 		else if (this->right == NULL)
 		{
 			shared_ptr<BTree> temp = this->left;
-			GetSharedThis().reset();
+			SharedThis().reset();
 			return temp;
 		}
 
 		// node with two children: Get the inorder successor (smallest in the right subtree) 
-		shared_ptr<BTree> temp = this->right->minNode();
+		shared_ptr<BTree> temp = this->right->MinNode();
 
 		// Copy the inorder successor's  
 		// content to this node 
 		this->key = temp->key;
 
 		// Delete the inorder successor 
-		this->right = this->right->deleteNode( temp->key);
+		this->right = this->right->DeleteNode( temp->key);
 	}
 	 
-	return GetSharedThis();
+	return SharedThis();
 }
 
-shared_ptr<BTree> BTree::minNode()
+shared_ptr<BTree> BTree::MinNode()
 {
 	shared_ptr<BTree> current = shared_from_this();
 
@@ -193,7 +193,7 @@ shared_ptr<BTree> BTree::minNode()
 	return current;
 }
 
-shared_ptr<BTree> BTree::maxNode()
+shared_ptr<BTree> BTree::MaxNode()
 {
 	shared_ptr<BTree> current = shared_from_this();
 
@@ -203,4 +203,9 @@ shared_ptr<BTree> BTree::maxNode()
 	}
 
 	return current;
+}
+
+std::shared_ptr<BTree> BTree::SharedThis()
+{
+	return shared_from_this();
 }

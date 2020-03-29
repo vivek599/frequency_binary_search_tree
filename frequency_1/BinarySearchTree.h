@@ -21,14 +21,10 @@ private:
 	shared_ptr<BTree> left;
 	shared_ptr<BTree> right;
 
-	shared_ptr<BTree> deleteNode(int key);
-	shared_ptr<BTree> minNode();
-	shared_ptr<BTree> maxNode();
-	
-	shared_ptr<BTree> GetSharedThis()
-	{
-		return shared_from_this();
-	}
+	shared_ptr<BTree> DeleteNode(int key);
+	shared_ptr<BTree> MinNode();
+	shared_ptr<BTree> MaxNode();
+	shared_ptr<BTree> SharedThis();
 
 public:
 	BTree();
@@ -37,15 +33,15 @@ public:
 
 	void inorder();
 
-	bool insert(int key);
+	bool Insert(int key);
 
-	int freq(int key);
+	int GetFrequency(int key);
 
-	int minValue();
+	int GetMinValue();
 
-	int maxValue();
+	int GetMaxValue();
 
-	bool contains(int key);
+	bool Contains(int key);
 	void Remove(int key);
 
 

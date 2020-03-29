@@ -29,32 +29,32 @@ int main()
 
 		infile >> tmpInt;
 
-		root->insert(tmpInt);
+		root->Insert(tmpInt);
 	}
 
 	cout << "Reading file finished..." << endl;
 
 	infile.close();
 
-	cout << "min : " << root->minValue() << endl;
-	cout << "max : " << root->maxValue() << endl;
+	cout << "min : " << root->GetMinValue() << endl;
+	cout << "max : " << root->GetMaxValue() << endl;
 
-	cout << "816 is present : " << (root->contains(816) ? "Yes" : "No") << endl;
-	cout << "1001 is present : " << (root->contains(1001) ? "Yes" : "No") << endl;
+	cout << "816 is present : " << (root->Contains(816) ? "Yes" : "No") << endl;
+	cout << "1001 is present : " << (root->Contains(1001) ? "Yes" : "No") << endl;
 
 	root->Remove(816);
-	cout << "816 is present : " << (root->contains(816) ? "Yes" : "No") << endl;
+	cout << "816 is present : " << (root->Contains(816) ? "Yes" : "No") << endl;
 	
-	cout << "424 is present : " << (root->contains(424) ? "Yes" : "No") << endl;
+	cout << "424 is present : " << (root->Contains(424) ? "Yes" : "No") << endl;
 	root->Remove(424);
-	cout << "424 is present : " << (root->contains(424) ? "Yes" : "No") << endl;
+	cout << "424 is present : " << (root->Contains(424) ? "Yes" : "No") << endl;
 
 	while ( true )
 	{
 		cout << "Enter a number between 0 to 1000 : ";
 		cin >> num;
 
-		cout << num << " is " << (root->contains(num) ? "present." : "Not present.") << endl;
+		cout << num << " is " << (root->Contains(num) ? "present." : "Not present.") << endl;
 
 		if (num == -1)
 		{
@@ -63,7 +63,7 @@ int main()
 
 		num = num < 0 ? 0 : num > 1000 ? 1000 : num;
 
-		cout << "freq of " << num << " is " << root->freq(num) << endl;
+		cout << "freq of " << num << " is " << root->GetFrequency(num) << endl;
 		
 		system("pause");
 		system("cls");
