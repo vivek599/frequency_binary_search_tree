@@ -21,7 +21,7 @@ int main()
 		return 0;
 	}
 
-	unique_ptr<BTree> root(new BTree());
+	shared_ptr<BTree> root(new BTree());
 
 	cout << "Reading file..." << endl;
 	while (!infile.eof())
@@ -43,6 +43,12 @@ int main()
 	cout << "816 is present : " << (root->contains(816) ? "Yes" : "No") << endl;
 	cout << "1001 is present : " << (root->contains(1001) ? "Yes" : "No") << endl;
 
+	root->Remove(816);
+	cout << "816 is present : " << (root->contains(816) ? "Yes" : "No") << endl;
+	
+	cout << "424 is present : " << (root->contains(424) ? "Yes" : "No") << endl;
+	root->Remove(424);
+	cout << "424 is present : " << (root->contains(424) ? "Yes" : "No") << endl;
 
 	while ( true )
 	{
@@ -63,7 +69,6 @@ int main()
 		system("pause");
 		system("cls");
 	}
-
 
 	root->inorder();
 

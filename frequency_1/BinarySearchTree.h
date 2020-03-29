@@ -12,14 +12,23 @@ using namespace std;
 
 
 
-class BTree
+class BTree : public enable_shared_from_this<BTree>
 {
 private:
 
 	int key;
 	int count;
-	unique_ptr<BTree> left;
-	unique_ptr<BTree> right;
+	shared_ptr<BTree> left;
+	shared_ptr<BTree> right;
+
+	shared_ptr<BTree> deleteNode(int key);
+	shared_ptr<BTree> minNode();
+	shared_ptr<BTree> maxNode();
+	
+	shared_ptr<BTree> GetSharedThis()
+	{
+		return shared_from_this();
+	}
 
 public:
 	BTree();
@@ -37,6 +46,7 @@ public:
 	int maxValue();
 
 	bool contains(int key);
+	void Remove(int key);
 
 
 };

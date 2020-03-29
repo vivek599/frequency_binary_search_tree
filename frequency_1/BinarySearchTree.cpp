@@ -1,5 +1,6 @@
 #include "BinarySearchTree.h"
 
+
 BTree::BTree()
 {
 	this->key = -1;
@@ -130,4 +131,76 @@ bool BTree::contains(int key)
 
 	return false;
 
+}
+
+void BTree::Remove(int key)
+{
+	deleteNode(key);
+}
+
+shared_ptr<BTree> BTree::deleteNode(int key)
+{
+	if ( this == NULL)
+		return NULL;
+
+	if (key < this->key)
+	{
+		this->left = this->left->deleteNode(key);
+	}
+	else if (key > this->key)
+	{
+		this->right = this->right->deleteNode(key);
+	}
+	else
+	{
+		//only one child or no child 
+		if (this->left == NULL)
+		{
+			shared_ptr<BTree> temp = this->right;
+			GetSharedThis().reset();
+			return temp;
+		}
+		else if (this->right == NULL)
+		{
+			shared_ptr<BTree> temp = this->left;
+			GetSharedThis().reset();
+			return temp;
+		}
+
+		// node with two children: Get the inorder successor (smallest in the right subtree) 
+		shared_ptr<BTree> temp = this->right->minNode();
+
+		// Copy the inorder successor's  
+		// content to this node 
+		this->key = temp->key;
+
+		// Delete the inorder successor 
+		this->right = this->right->deleteNode( temp->key);
+	}
+	 
+	return GetSharedThis();
+}
+
+shared_ptr<BTree> BTree::minNode()
+{
+	shared_ptr<BTree> current = shared_from_this();
+
+	while (current->left != NULL)
+	{
+		current = current->left;
+	}
+
+	return current;
+}
+
+shared_ptr<BTree> BTree::maxNode()
+{
+	shared_ptr<BTree> current = shared_from_this();
+
+	while (current->right != NULL)
+	{
+		current = current->right;
+	}
+
+	return current;
 }
