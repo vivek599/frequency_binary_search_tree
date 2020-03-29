@@ -44,6 +44,8 @@ public:
 
 	int GetHeight();
 
+	int GetSize();
+
 	int GetMinValue();
 
 	int GetMaxValue();

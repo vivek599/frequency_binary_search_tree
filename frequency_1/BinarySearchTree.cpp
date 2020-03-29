@@ -152,6 +152,17 @@ int BTree::GetHeight()
 	return max( leftHeight, rightHeight ) + 1;
 }
 
+int BTree::GetSize()
+{
+	if (this == NULL)
+		return 0;
+
+	int leftSize = this->left->GetSize();
+	int rightSize = this->right->GetSize();
+
+	return leftSize + rightSize + 1;
+}
+
 int BTree::GetMinValue()
 {
 	BTree* current = this;

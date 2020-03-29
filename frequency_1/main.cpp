@@ -33,6 +33,7 @@ int main()
 	root->Insert(200);
 	
 	cout << "Tree height : " << root->GetHeight() << endl;
+	cout << "Tree Size : " << root->GetSize() << endl;
 
 	cout << endl;
 	root->LevelOrder();
@@ -61,6 +62,7 @@ int main()
 	infile.close();
 
 	cout << "Tree height : " << root->GetHeight() << endl;
+	cout << "Tree Size : " << root->GetSize() << endl;
 
 	cout << "min : " << root->GetMinValue() << endl;
 	cout << "max : " << root->GetMaxValue() << endl;
